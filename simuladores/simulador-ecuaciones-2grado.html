@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Ecuaciones de 2º Grado</title>
+    <!-- Librerías de Estilos y Funcionalidad -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/function-plot/dist/function-plot.js"></script>
+    <style>
+        body { 
+            font-family: monospace;
+            -webkit-font-smoothing: antialiased; 
+            -moz-osx-font-smoothing: grayscale; 
+        }
+        /* Asegura que los textos y ejes del gráfico sean negros */
+        .function-plot text {
+            fill: black !important;
+        }
+        .function-plot .grid .tick line {
+            stroke: #e5e7eb !important; /* Rejilla gris claro */
+        }
+        /* Estilos para el placeholder de los inputs */
+        input::placeholder {
+            color: #9ca3af; /* gray-400 */
+        }
+    </style>
+</head>
+<body class="bg-white text-black h-full flex flex-col md:flex-row p-4 gap-4">
+    <!-- === Panel de Control y Resultados (Izquierda) === -->
+    <div class="w-full md:w-1/3 bg-white p-4 rounded-lg flex flex-col gap-6 border border-gray-200">
+        <header>
+            <h1 class="text-xl font-bold text-center">Ecuaciones de 2º Grado</h1>
+            <p class="text-center text-lg mt-1">ax² + bx + c = 0</p>
+        </header>
+
+        <!-- Inputs para Coeficientes -->
+        <div class="flex flex-col gap-4">
+            <h2 class="text-lg font-semibold">Introduce los coeficientes:</h2>
+            <div class="grid grid-cols-3 gap-3 items-center">
+                <!-- Coeficiente a -->
+                <div>
+                    <label for="coeff-a" class="text-2xl font-bold">a =</label>
+                    <input id="coeff-a" type="number" value="1" class="ml-2 w-full max-w-xs p-2 text-center border border-gray-300 rounded-lg focus:ring-black focus:border-black">
+                </div>
+                <!-- Coeficiente b -->
+                <div>
+                    <label for="coeff-b" class="text-2xl font-bold">b =</label>
+                    <input id="coeff-b" type="number" value="-5" class="ml-2 w-full max-w-xs p-2 text-center border border-gray-300 rounded-lg focus:ring-black focus:border-black">
+                </div>
+                <!-- Coeficiente c -->
+                <div>
+                    <label for="coeff-c" class="text-2xl font-bold">c =</label>
+                    <input id="coeff-c" type="number" value="6" class="ml-2 w-full max-w-xs p-2 text-center border border-gray-300 rounded-lg focus:ring-black focus:border-black">
+                </div>
+            </div>
+            <button id="solve-button" class="mt-2 w-full bg-black text-white font-bold py-3 rounded-lg hover:bg-gray-800 transition-colors">Resolver</button>
+        </div>
+
+        <!-- Área de Resultados -->
+        <div class="flex-grow space-y-4">
+            <h2 class="text-lg font-semibold">Resultados:</h2>
+            <div id="results-output" class="p-4 border border-gray-200 rounded-lg h-full space-y-3">
+                <!-- Los resultados se insertarán aquí con JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- === Gráfico (Derecha) === -->
+    <div class="w-full md:w-2/3 bg-white rounded-lg border border-gray-200 flex flex-col items-center justify-center">
+        <div id="plot" class="w-full h-full"></div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Referencias a los elementos del DOM
+            const inputA = document.getElementById('coeff-a');
+            const inputB = document.getElementById('coeff-b');
+            const inputC = document.getElementById('coeff-c');
+            const solveButton = document.getElementById('solve-button');
+            const resultsOutput = document.getElementById('results-output');
+            const plotContainer = document.getElementById('plot');
+
+            function solveAndPlot() {
+                // Limpiar resultados anteriores
+                resultsOutput.innerHTML = '';
+
+                // Obtener valores y convertirlos a número
+                const a = parseFloat(inputA.value);
+                const b = parseFloat(inputB.value);
+                const c = parseFloat(inputC.value);
+
+                // Validación simple
+                if (isNaN(a) || isNaN(b) || isNaN(c)) {
+                    resultsOutput.innerHTML = '<p class="text-red-600">Por favor, introduce valores numéricos válidos.</p>';
+                    return;
+                }
+
+                if (a === 0) {
+                    resultsOutput.innerHTML = '<p class="text-red-600">El coeficiente \'a\' no puede ser 0 en una ecuación de segundo grado.</p>';
+                    return;
+                }
+
+                // 1. Calcular el discriminante
+                const delta = b * b - 4 * a * c;
+
+                // 2. Determinar y mostrar las soluciones
+                let solutionsText = '';
+                if (delta > 0) {
+                    const x1 = (-b + Math.sqrt(delta)) / (2 * a);
+                    const x2 = (-b - Math.sqrt(delta)) / (2 * a);
+                    solutionsText = `<p class="font-bold">Dos soluciones reales:</p><p>x₁ = ${x1.toFixed(4)}</p><p>x₂ = ${x2.toFixed(4)}</p>`;
+                } else if (delta === 0) {
+                    const x1 = -b / (2 * a);
+                    solutionsText = `<p class="font-bold">Una única solución real (raíz doble):</p><p>x = ${x1.toFixed(4)}</p>`;
+                } else {
+                    solutionsText = `<p class="font-bold">No existen soluciones reales.</p><p>(El discriminante es negativo)</p>`;
+                }
+
+                resultsOutput.innerHTML = `<p>Discriminante: Δ = ${delta.toFixed(4)}</p><hr class="border-gray-200">${solutionsText}`;
+
+                // 3. Dibujar la función cuadrática
+                try {
+                    functionPlot({
+                        target: '#plot',
+                        width: plotContainer.clientWidth,
+                        height: plotContainer.clientHeight,
+                        yAxis: { domain: [-10, 10], color: 'black' },
+                        xAxis: { domain: [-10, 10], color: 'black' },
+                        grid: true,
+                        tip: { xLine: true, yLine: true },
+                        data: [{
+                            fn: `${a}*x^2 + ${b}*x + ${c}`,
+                            color: 'black',
+                            graphType: 'polyline'
+                        }]
+                    });
+                } catch (err) {
+                    plotContainer.innerHTML = '<p class="text-red-600">Error al graficar la función.</p>';
+                    console.error(err);
+                }
+            }
+
+            // --- Event Listeners ---
+            solveButton.addEventListener('click', solveAndPlot);
+
+            [inputA, inputB, inputC].forEach(input => {
+                input.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') solveAndPlot();
+                });
+            });
+
+            // Redibujar si cambia el tamaño de la ventana
+            const resizeObserver = new ResizeObserver(() => setTimeout(solveAndPlot, 0));
+            resizeObserver.observe(plotContainer);
+
+            // Carga Inicial
+            solveAndPlot();
+        });
+    </script>
+</body>
+</html>

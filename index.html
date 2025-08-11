@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentación de Matemática Aplicada</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- KaTeX for beautiful math rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
+        xintegrity="sha384-n8MVd4RsNIU0KOVEMckMnHllPN8yLI+xMVDMMNWrCedCNiPpwGGuNx2DbeCGICTw" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"
+        xintegrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        xintegrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05"
+        crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    { left: '$$', right: '$$', display: true },
+                    { left: '\\[', right: '\\]', display: true },
+                    { left: '$', right: '$', display: false },
+                    { left: '\\(', right: '\\)', display: false }
+                ]
+            });
+        });
+    </script>
+
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+            background-color: #ffffff;
+            color: #111827;
+            /* Near black for text */
+        }
+
+        .main-content-wrapper {
+            padding-top: 4rem;
+            /* Space for the fixed header */
+        }
+
+        .katex {
+            font-size: 1.1em;
+        }
+
+        /* Callout box for definitions/examples */
+        .callout {
+            background-color: #f9fafb;
+            border-left: 3px solid #e5e7eb;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.25rem;
+        }
+
+        .quiz-question label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 0.5rem 0;
+        }
+
+        .quiz-question input[type="radio"] {
+            margin-right: 0.75rem;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #f3f4f6;
+            border-radius: 0.5rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+
+    <!-- Header -->
+    <header
+        class="fixed top-0 left-0 right-0 h-16 bg-white/80 backdrop-blur-sm border-b border-gray-200 z-30 flex items-center justify-between px-6">
+        <h1 id="header-title" class="text-lg font-semibold text-gray-900">Documentación de Matemática Aplicada</h1>
+        <nav class="flex space-x-6">
+            <a href="index.html" class="text-gray-900 font-semibold">Documentación</a>
+            <a href="portafolio.html"
+                class="text-gray-600 hover:text-gray-900 transition-colors font-medium">Portafolio</a>
+            <a href="descargas.html"
+                class="text-gray-600 hover:text-gray-900 transition-colors font-medium">Descargas</a>
+        </nav>
+    </header>
+
+    <!-- Main Content Wrapper -->
+    <div class="main-content-wrapper">
+        <main id="main-content" class="w-full max-w-4xl mx-auto p-6 md:p-10">
+
+            <!-- Enlace a NotebookLM -->
+            <div class="mb-8 p-4 bg-gray-50 border border-gray-300 rounded-lg">
+                <p class="text-base text-gray-800 mb-3">¿Quieres preguntarle a la IA más sobre los temas que vas a ver
+                    en esta web?</p>
+                <a href="https://notebooklm.google.com/notebook/596fadaa-0abc-45b0-b374-60a239051e9d?authuser=1"
+                    target="_blank"
+                    class="inline-flex items-center px-4 py-2 bg-gray-800 text-white font-medium rounded-md hover:bg-gray-900 transition-colors duration-200">
+                    🤖 Consultar con IA
+                    <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                    </svg>
+                </a>
+            </div>
+
+            <section id="unidad1"></section>
+            <h2 class="text-3xl font-bold tracking-tight">Unidad 1: Ecuaciones de Primer Grado y Sistemas Lineales
+            </h2>
+            <p class="mt-2 text-lg text-gray-600">Fundamentos del álgebra lineal, desde la resolución de ecuaciones
+                simples hasta sistemas de múltiples variables.</p>
+            <hr class="my-8 border-gray-200">
+
+            <article id="u1-sub1">
+                <h3 class="text-2xl font-bold tracking-tight mb-4">Ecuaciones de Primer Grado</h3>
+                <p class="text-base leading-relaxed text-gray-700">Una <strong>ecuación</strong> es una igualdad
+                    matemática entre dos expresiones que contienen elementos conocidos (datos) y desconocidos
+                    (incógnitas). En las ecuaciones de primer grado, la incógnita tiene exponente 1. El objetivo es
+                    encontrar el valor de la incógnita que hace que la igualdad sea verdadera, a este valor se le
+                    llama <strong>solución</strong>.</p>
+                <h4 class="text-lg font-semibold mt-6 mb-2">Propiedades de la Igualdad</h4>
+                <p class="text-base leading-relaxed text-gray-700">Para resolver una ecuación, la transformamos en
+                    ecuaciones equivalentes más simples usando estas propiedades:</p>
+                <ul class="list-disc list-inside space-y-2 mt-4 text-base leading-relaxed text-gray-700">
+                    <li><strong>Propiedad de la suma:</strong> Si se suma o resta la misma cantidad en ambos
+                        miembros de una ecuación, la igualdad se mantiene. \(A = B \implies A+c = B+c\)</li>
+                    <li><strong>Propiedad de la multiplicación:</strong> Si se multiplican o dividen ambos miembros
+                        de una ecuación por la misma cantidad (distinta de cero), la igualdad se mantiene. \(A = B
+                        \implies A \cdot c = B \cdot c\)</li>
+                </ul>
+                <div class="callout">
+                    <h4 class="text-lg font-semibold mb-3">Ejemplo: Resolver \(5x + 7 = x - 5\)</h4>
+                    <ol class="list-decimal list-inside space-y-2">
+                        <li><strong>Agrupar términos:</strong> Mover los términos con \(x\) a un lado y las
+                            constantes al otro. <br> \(5x - x = -5 - 7\)</li>
+                        <li><strong>Simplificar:</strong> Combinar términos semejantes. <br> \(4x = -12\)</li>
+                        <li><strong>Despejar la incógnita:</strong> Dividir por el coeficiente de \(x\). <br> \(x =
+                            \frac{-12}{4} \implies x = -3\)</li>
+                    </ol>
+                </div>
+            </article>
+
+            <article id="u1-sub2" class="mt-12">
+                <h3 class="text-2xl font-bold tracking-tight mb-4">Sistemas de Ecuaciones Lineales</h3>
+                <p class="text-base leading-relaxed text-gray-700">Un sistema de ecuaciones lineales es un conjunto
+                    de dos o más ecuaciones de primer grado. La solución es el conjunto de valores que satisface
+                    todas las ecuaciones simultáneamente. Gráficamente, corresponde al punto de intersección de las
+                    rectas que cada ecuación representa.</p>
+                <div class="text-center my-4">\[ \begin{cases} ax + by = c \\ a'x + b'y = c' \end{cases} \]</div>
+                <h4 class="text-lg font-semibold mt-6 mb-2">Métodos de Resolución</h4>
+                <ul class="list-disc list-inside space-y-4 mt-4 text-base leading-relaxed text-gray-700">
+                    <li><strong>Sustitución:</strong> Se despeja una incógnita en una de las ecuaciones y se
+                        sustituye su valor en la otra.</li>
+                    <li><strong>Igualación:</strong> Se despeja la misma incógnita en ambas ecuaciones y se igualan
+                        las expresiones resultantes.</li>
+                    <li><strong>Reducción:</strong> Se multiplican las ecuaciones por números adecuados para que los
+                        coeficientes de una de las incógnitas sean opuestos, y luego se suman las ecuaciones para
+                        eliminar esa incógnita.</li>
+                </ul>
+                <p class="text-base leading-relaxed mt-4"><strong>Clasificación según su solución:</strong></p>
+                <ul class="list-disc list-inside space-y-2 mt-4">
+                    <li><strong>Compatible Determinado:</strong> Una única solución (las rectas se cortan).</li>
+                    <li><strong>Compatible Indeterminado:</strong> Infinitas soluciones (las rectas son la misma).
+                    </li>
+                    <li><strong>Incompatible:</strong> Sin solución (las rectas son paralelas).</li>
+                </ul>
+            </article>
+
+            <article class="mt-16">
+                <h3 class="text-2xl font-bold tracking-tight mb-4">Videos Recomendados</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="font-semibold mb-2">Ecuaciones de Primer Grado</h4>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/IHblqjW8RY8" title="YouTube video player"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-2">Sistemas de Ecuaciones Lineales</h4>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/apPXOlZnRhg" title="YouTube video player"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="mt-16">
+                <h3 class="text-2xl font-bold tracking-tight mb-4">Ejercicios de la Unidad 1</h3>
+                <div class="callout">
+                    <div class="quiz-question">
+                        <p class="font-semibold">1. Un servidor tiene 64 GB de RAM en total. El sistema operativo
+                            consume 8 GB. Si cada instancia de una aplicación web consume 4 GB, ¿cuántas instancias
+                            puedes ejecutar?</p>
+                        <p class="text-sm text-gray-600 mt-1">Ecuación: 64 - 8 = 4x, donde x es el número de instancias
+                        </p>
+                        <div class="space-y-2 mt-2">
+                            <div><label><input type="radio" name="q1" value="a"> a) 12 instancias</label></div>
+                            <div><label><input type="radio" name="q1" value="b"> b) 14 instancias</label></div>
+                            <div><label><input type="radio" name="q1" value="c"> c) 16 instancias</label></div>
+                        </div>
+                        <button onclick="checkAnswer(this, 'b')"
+                            class="mt-3 px-4 py-1 bg-gray-200 rounded hover:bg-gray-300 text-sm font-medium">Verificar</button>
+                        <span class="feedback ml-3 text-sm font-semibold"></span>
+                        <div class="explanation hidden mt-3 p-3 bg-green-50 border border-green-200 rounded text-sm">
+                            <strong>Explicación:</strong> RAM disponible = 64 - 8 = 56 GB. Instancias = 56 ÷ 4 = 14
+                            instancias.
+                        </div>
+                    </div>
+
+                    <div class="quiz-question mt-8">
+                        <p class="font-semibold">2. Un equipo de 10 programadores está formado por desarrolladores
+                            junior y senior. Los senior escriben 100 líneas de código al día y los junior 50. Si el
+                            equipo produce 700 líneas de código en un día, ¿cuántos desarrolladores senior y junior hay?
+                        </p>
+                        <p class="text-sm text-gray-600 mt-1">Sistema: s + j = 10 y 100s + 50j = 700</p>
+                        <div class="space-y-2 mt-2">
+                            <div><label><input type="radio" name="q2" value="a"> a) 6 senior y 4 junior</label></div>
+                            <div><label><input type="radio" name="q2" value="b"> b) 5 senior y 5 junior</label></div>
+                            <div><label><input type="radio" name="q2" value="c"> c) 4 senior y 6 junior</label></div>
+                        </div>
+                        <button onclick="checkAnswer(this, 'c')"
+                            class="mt-3 px-4 py-1 bg-gray-200 rounded hover:bg-gray-300 text-sm font-medium">Verificar</button>
+                        <span class="feedback ml-3 text-sm font-semibold"></span>
+                        <div class="explanation hidden mt-3 p-3 bg-green-50 border border-green-200 rounded text-sm">
+                            <strong>Explicación:</strong> De s + j = 10 → j = 10 - s. Sustituyendo: 100s + 50(10-s) =
+                            700 → 50s = 200 → s = 4, j = 6.
+                        </div>
+                    </div>
+
+                    <div class="quiz-question mt-8">
+                        <p class="font-semibold">3. Resuelve la ecuación: 3x - 7 = 2x + 5</p>
+                        <div class="space-y-2 mt-2">
+                            <div><label><input type="radio" name="q1_3" value="a"> a) x = 12</label></div>
+                            <div><label><input type="radio" name="q1_3" value="b"> b) x = 8</label></div>
+                            <div><label><input type="radio" name="q1_3" value="c"> c) x = -2</label></div>
+                        </div>
+                        <button onclick="checkAnswer(this, 'a')"
+                            class="mt-3 px-4 py-1 bg-gray-200 rounded hover:bg-gray-300 text-sm font-medium">Verificar</button>
+                        <span class="feedback ml-3 text-sm font-semibold"></span>
+                        <div class="explanation hidden mt-3 p-3 bg-green-50 border border-green-200 rounded text-sm">
+                            <strong>Explicación:</strong> 3x - 2x = 5 + 7 → x = 12. Verificación: 3(12) - 7 = 29 y 2(12)
+                            + 5 = 29 ✓
+                        </div>
+                    </div>
+
+                    <div class="quiz-question mt-8">
+                        <p class="font-semibold">4. Una empresa de hosting cobra 15 dolares de instalación más 8 dolares
+                            por mes. Si
+                            el costo total después de cierto tiempo es 87 dolares, ¿cuántos meses de servicio se
+                            pagaron?</p>
+                        <div class="space-y-2 mt-2">
+                            <div><label><input type="radio" name="q1_4" value="a"> a) 8 meses</label></div>
+                            <div><label><input type="radio" name="q1_4" value="b"> b) 9 meses</label></div>
+                            <div><label><input type="radio" name="q1_4" value="c"> c) 10 meses</label></div>
+                        </div>
+                        <button onclick="checkAnswer(this, 'b')"
+                            class="mt-3 px-4 py-1 bg-gray-200 rounded hover:bg-gray-300 text-sm font-medium">Verificar</button>
+                        <span class="feedback ml-3 text-sm font-semibold"></span>
+                        <div class="explanation hidden mt-3 p-3 bg-green-50 border border-green-200 rounded text-sm">
+                            <strong>Explicación:</strong> 15 + 8m = 87 → 8m = 72 → m = 9 meses.
+                        </div>
+                    </div>
+                </div>
+            </article>
+            </section>
+
+            <section id="unidad2" class="pt-16">
+                <h2 class="text-3xl font-bold tracking-tight">Unidad 2: Ecuaciones de Segundo Grado</h2>
+                <p class="mt-2 text-lg text-gray-600">Estudio de las ecuaciones polinómicas de grado 2 y sus
+                    representaciones gráficas como parábolas.</p>
+
+                <!-- Enlace al simulador de ecuaciones de segundo grado -->
+                <div class="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+                    <p class="text-base text-green-800 mb-3">¿Quieres practicar con un simulador interactivo?</p>
+                    <a href="simuladores/simulador-ecuaciones-2grado.html" target="_blank"
+                        class="inline-flex items-center px-4 py-2 bg-green-600 text-white font-medium rounded-md hover:bg-green-700 transition-colors duration-200">
+                        📊 Ir al Simulador de Ecuaciones de 2º Grado
+                        <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                    </a>
+                </div>
+
+                <hr class="my-8 border-gray-200">
+
+                <article id="u2-sub1">
+                    <h3 class="text-2xl font-bold tracking-tight mb-4">Resolución de Ecuaciones</h3>
+                    <p class="text-base leading-relaxed text-gray-700">Las ecuaciones de segundo grado pueden ser
+                        completas (\(ax^2+bx+c=0\)) o incompletas (cuando \(b=0\) o \(c=0\)).</p>
+                    <div class="callout">
+                        <h4 class="text-lg font-semibold mb-3">Fórmula General (Resolvente)</h4>
+                        <p class="leading-relaxed">Para ecuaciones completas, las soluciones se obtienen con la fórmula:
+                        </p>
+                        <div class="text-center my-4">\[ x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \]</div>
+                        <p class="leading-relaxed">El <strong>discriminante</strong>, \(\Delta = b^2 - 4ac\), es clave.
+                            Determina el número de soluciones reales: si \(\Delta > 0\), hay dos soluciones; si \(\Delta
+                            = 0\), hay una solución doble; y si \(\Delta < 0\), no hay soluciones reales.</p>
+                    </div>
+                    <h4 class="text-lg font-semibold mt-6 mb-2">Ecuaciones Incompletas</h4>
+                    <ul class="list-disc list-inside space-y-2 mt-4 text-base leading-relaxed text-gray-700">
+                        <li><strong>Si \(b=0\):</strong> La ecuación es \(ax^2+c=0\). Se despeja \(x^2\) directamente:
+                            \(x = \pm\sqrt{-c/a}\).</li>
+                        <li><strong>Si \(c=0\):</strong> La ecuación es \(ax^2+bx=0\). Se saca factor común:
+                            \(x(ax+b)=0\), con soluciones \(x=0\) y \(x=-b/a\).</li>
+                    </ul>
+                </article>
+
+                <article id="u2-sub2" class="mt-12">
+                    <h3 class="text-2xl font-bold tracking-tight mb-4">Función Cuadrática y su Gráfica</h3>
+                    <p class="text-base leading-relaxed text-gray-700">La función \(f(x) = ax^2 + bx + c\) representa
+                        una <strong>parábola</strong>. Sus elementos principales son:</p>
+                    <ul class="list-disc list-inside space-y-2 mt-4 text-base leading-relaxed text-gray-700">
+                        <li><strong>Vértice:</strong> Es el punto mínimo (si \(a>0\)) o máximo (si \(a<0\)). Su
+                                coordenada x es \(x_v=\frac{-b}{2a}\).</li>
+                        <li><strong>Eje de simetría:</strong> Es la recta vertical que pasa por el vértice, \(x = x_v\).
+                        </li>
+                        <li><strong>Puntos de corte:</strong> El corte con el eje Y es en \((0, c)\). Los cortes con el
+                            eje X son las soluciones de \(ax^2+bx+c=0\).</li>
+                    </ul>
+                </article>
+
+                <article class="mt-16">
+                    <h3 class="text-2xl font-bold tracking-tight mb-4">Videos Recomendados</h3>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-semibold mb-2">Ecuación de Segundo Grado</h4>
+                            <div class="video-container">
+                                <iframe src="https://www.youtube.com/embed/ZC67c5ar9mA" title="YouTube video player"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-2">Función Cuadrática</h4>
+                            <div class="video-container">
+                                <iframe src="https://www.youtube.com/embed/gnAdna_tLK0" title="YouTube video player"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="mt-16">
+                    <h3 class="text-2xl font-bold tracking-tight mb-4">Ejercicios de la Unidad 2</h3>
+                    <div class="callout">
+                        <div class="quiz-question">
+                            <p class="font-semibold">1. Resuelve la ecuación cuadrática: \(x^2 - 5x + 6 = 0\)</p>
+                            <p class="text-sm text-gray-600 mt-1">Usa la fórmula general o factorización</p>
+                            <div class="space-y-2 mt-2">
+                                <div><label><input type="radio" name="q2_1" value="a"> a) x = 2, x = 3</label></div>
+                                <div><label><input type="radio" name="q2_1" value="b"> b) x = 1, x = 6</label></div>
+                                <div><label><input type="radio" name="q2_1" value="c"> c) x = -2, x = -3</label></div>
+                            </div>
+                            <button onclick="checkAnswer(this, 'a')"
+                                class="mt-3 px-4 py-1 bg-gray-200 rounded hover:bg-gray-300 text-sm font-medium">Verificar</button>
+                            <span class="feedback ml-3 text-sm font-semibold"></span>
+                            <div
+                                class="explanation hidden mt-3 p-3 bg-green-50 border border-green-200 rounded text-sm">
+                                <strong>Explicación:</strong> Factorizando: (x-2)(x-3) = 0, por lo tanto x = 2 o x = 3.
+                            </div>
+                        </div>
+
+                        <div class="quiz-question mt-8">
+                            <p class="font-semibold">2. El rendimiento de un procesador al aumentar su frecuencia \(f\)
+                                (en GHz) se modela por \(R(f) = -2f^2 + 12f\). ¿En qué frecuencia se alcanza el
+                                rendimiento máximo?</p>
+                            <p class="text-sm text-gray-600 mt-1">El vértice de la parábola está en \(f =
+                                -\frac{b}{2a}\)</p>
+                            <div class="space-y-2 mt-2">
+                                <div><label><input type="radio" name="q2_2" value="a"> a) 2 GHz</label></div>
+                                <div><label><input type="radio" name="q2_2" value="b"> b) 3 GHz</label></div>
+                                <div><label><input type="radio" name="q2_2" value="c"> c) 6 GHz</label></div>
+                            </div>
+                            <button onclick="checkAnswer(this, 'b')"
+                                class="mt-3 px-4 py-1 bg-gray-200 rounded hover:bg-gray-300 text-sm font-medium">Verificar</button>
+                            <span class="feedback ml-3 text-sm font-semibold"></span>
+                            <div
+                                class="explanation hidden mt-3 p-3 bg-green-50 border border-green-200 rounded text-sm">
+                                <strong>Explicación:</strong> \(f = -\frac{12}{2(-2)} = \frac{12}{4} = 3\) GHz. El
+                                rendimiento máximo es R(3) = 18.
+                            </div>
+                        </div>
+
+                        <div class="quiz-question mt-8">
+                            <p class="font-semibold">3. Una pelota se lanza hacia arriba y su altura (en metros) está
+                                dada por \(h(t) = -5t^2 + 20t + 1\), donde t es el tiempo en segundos. ¿Cuál es la
+                                altura máxima que alcanza?</p>
+                            <div class="space-y-2 mt-2">
+                                <div><label><input type="radio" name="q2_3" value="a"> a) 21 metros</label></div>
+                                <div><label><input type="radio" name="q2_3" value="b"> b) 20 metros</label></div>
+                                <div><label><input type="radio" name="q2_3" value="c"> c) 25 metros</label></div>
+                            </div>
+                            <button onclick="checkAnswer(this, 'a')"
+                                class="mt-3 px-4 py-1 bg-gray-200 rounded hover:bg-gray-300 text-sm font-medium">Verificar</button>
+                            <span class="feedback ml-3 text-sm font-semibold"></span>
+                            <div
+                                class="explanation hidden mt-3 p-3 bg-green-50 border border-green-200 rounded text-sm">
+                                <strong>Explicación:</strong> El tiempo del máximo es t = 2s. La altura máxima es h(2) =
+                                -5(4) + 20(2) + 1 = 21 metros.
+                            </div>
+                        </div>
+
+                        <div class="quiz-question mt-8">
+                            <p class="font-semibold">4. ¿Cuántas soluciones reales tiene la ecuación \(2x^2 - 4x + 5 =
+                                0\)?</p>
+                            <p class="text-sm text-gray-600 mt-1">Calcula el discriminante \(\Delta = b^2 - 4ac\)</p>
+                            <div class="space-y-2 mt-2">
+                                <div><label><input type="radio" name="q2_4" value="a"> a) Ninguna solución real</label>
+                                </div>
+                                <div><label><input type="radio" name="q2_4" value="b"> b) Una solución real</label>
+                                </div>
+                                <div><label><input type="radio" name="q2_4" value="c"> c) Dos soluciones reales</label>
+                                </div>
+                            </div>
+                            <button onclick="checkAnswer(this, 'a')"
+                                class="mt-3 px-4 py-1 bg-gray-200 rounded hover:bg-gray-300 text-sm font-medium">Verificar</button>
+                            <span class="feedback ml-3 text-sm font-semibold"></span>
+                            <div
+                                class="explanation hidden mt-3 p-3 bg-green-50 border border-green-200 rounded text-sm">
+                                <strong>Explicación:</strong> \(\Delta = (-4)^2 - 4(2)(5) = 16 - 40 = -24 < 0\). No hay
+                                    soluciones reales. </div>
+                            </div>
+                        </div>
+                </article>
+            </section>
+
+            <section id="unidad3" class="pt-16">
+                <h2 class="text-3xl font-bold tracking-tight">Unidad 3: Matrices</h2>
+                <p class="mt-2 text-lg text-gray-600">Introducción a las matrices, sus operaciones fundamentales y el
+                    concepto de matriz inversa.</p>
+
+                <!-- Enlace al simulador de matrices -->
+                <div class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                    <p class="text-base text-blue-800 mb-3">¿Quieres practicar con un simulador interactivo?</p>
+                    <a href="https://jairmendieta.github.io/simulador-matrices/" target="_blank"
+                        class="inline-flex items-center px-4 py-2 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 transition-colors duration-200">
+                        🧮 Ir al Simulador de Matrices
+                        <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                    </a>
+                </div>
+
+                <hr class="my-8 border-gray-200">
+
+                <article id="u3-sub1">
+                    <h3 class="text-2xl font-bold tracking-tight mb-4">Operaciones con Matrices</h3>
+                    <p class="text-base leading-relaxed text-gray-700">Las matrices permiten organizar datos y realizar
+                        operaciones complejas de forma estructurada. Las operaciones básicas son la suma, el producto
+                        por un escalar y el producto de matrices.</p>
+                    <div class="callout">
+                        <h4 class="text-lg font-semibold mb-3">Producto de Matrices</h4>
+                        <p>El producto \(A \cdot B\) solo es posible si el número de columnas de A es igual al número de
+                            filas de B. El elemento en la fila \(i\), columna \(j\) del resultado se obtiene
+                            multiplicando la fila \(i\) de A por la columna \(j\) de B. Esta operación no es
+                            conmutativa.</p>
+                        <p class="mt-2">Dadas \( A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix} \) y \( B =
+                            \begin{pmatrix} 5 & 6 \\ 7 & 8 \end{pmatrix} \):</p>
+                        \[ A \cdot B = \begin{pmatrix} (1\cdot5 + 2\cdot7) & (1\cdot6 + 2\cdot8) \\ (3\cdot5 + 4\cdot7)
+                        & (3\cdot6 + 4\cdot8) \end{pmatrix} = \begin{pmatrix} 19 & 22 \\ 43 & 50 \end{pmatrix} \]
+                    </div>
+                </article>
+
+                <article id="u3-sub2" class="mt-12">
+                    <h3 class="text-2xl font-bold tracking-tight mb-4">Matriz Inversa (\(A^{-1}\))</h3>
+                    <p class="text-base leading-relaxed text-gray-700">Solo las matrices cuadradas con determinante no
+                        nulo (regulares) tienen inversa. La matriz inversa \(A^{-1}\) es aquella que cumple \(A \cdot
+                        A^{-1} = I\), donde \(I\) es la matriz identidad. Es fundamental para resolver sistemas de
+                        ecuaciones lineales en forma matricial.</p>
+                </article>
+
+                <article class="mt-16">
+                    <h3 class="text-2xl font-bold tracking-tight mb-4">Videos Recomendados</h3>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-semibold mb-2">Introducción a Matrices</h4>
+                            <div class="video-container">
+                                <iframe src="https://www.youtube.com/embed/m6w5vLA3Lnw?si=4Vs3jb8z6ezK7QSZs"
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-2">Producto de Matrices</h4>
+                            <div class="video-container">
+                                <iframe src="https://www.youtube.com/embed/Tjrm3HsqBXE?si=5kQie8M1wgU4xNjC"
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="mt-16">
+                    <h3 class="text-2xl font-bold tracking-tight mb-4">Ejercicios de la Unidad 3</h3>
+                    <div class="callout">
+                        <div class="quiz-question">
+                            <p class="font-semibold">1. Calcula el producto de matrices: \(A \cdot B\) donde \(A =
+                                \begin{pmatrix} 2 & 1 \\ 3 & 4 \end{pmatrix}\) y \(B = \begin{pmatrix} 1 & 2 \\ 0 & 1
+                                \end{pmatrix}\)</p>
+                            <div class="space-y-2 mt-2">
+                                <div><label><input type="radio" name="q3_1" value="a"> a) \(\begin{pmatrix} 2 & 5 \\ 3 &
+                                        10 \end{pmatrix}\)</label></div>
+                                <div><label><input type="radio" name="q3_1" value="b"> b) \(\begin{pmatrix} 2 & 3 \\ 1 &
+                                        4 \end{pmatrix}\)</label></div>
+                                <div><label><input type="radio" name="q3_1" value="c"> c) \(\begin{pmatrix} 3 & 6 \\ 4 &
+                                        8 \end{pmatrix}\)</label></div>
+                            </div>
+                            <button onclick="checkAnswer(this, 'a')"
+                                class="mt-3 px-4 py-1 bg-gray-200 rounded hover:bg-gray-300 text-sm font-medium">Verificar</button>
+                            <span class="feedback ml-3 text-sm font-semibold"></span>
+                            <div
+                                class="explanation hidden mt-3 p-3 bg-green-50 border border-green-200 rounded text-sm">
+                                <strong>Explicación:</strong> \(A \cdot B = \begin{pmatrix} 2(1)+1(0) & 2(2)+1(1) \\
+                                3(1)+4(0) & 3(2)+4(1) \end{pmatrix} = \begin{pmatrix} 2 & 5 \\ 3 & 10 \end{pmatrix}\)
+                            </div>
+                        </div>
+
+                        <div class="quiz-question mt-8">
+                            <p class="font-semibold">2. En un videojuego, la posición de un personaje es \((x, y) = (3,
+                                5)\). Para rotarlo 90° en sentido antihorario, se multiplica por la matriz de rotación
+                                \(R = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}\). ¿Cuál es la nueva posición \((x',
+                                y')\)?</p>
+                            <div class="space-y-2 mt-2">
+                                <div><label><input type="radio" name="q3_2" value="a"> a) (-5, 3)</label></div>
+                                <div><label><input type="radio" name="q3_2" value="b"> b) (5, -3)</label></div>
+                                <div><label><input type="radio" name="q3_2" value="c"> c) (3, -5)</label></div>
+                            </div>
+                            <button onclick="checkAnswer(this, 'a')"
+                                class="mt-3 px-4 py-1 bg-gray-200 rounded hover:bg-gray-300 text-sm font-medium">Verificar</button>
+                            <span class="feedback ml-3 text-sm font-semibold"></span>
+                            <div
+                                class="explanation hidden mt-3 p-3 bg-green-50 border border-green-200 rounded text-sm">
+                                <strong>Explicación:</strong> \(R \cdot \begin{pmatrix} 3 \\ 5 \end{pmatrix} =
+                                \begin{pmatrix} 0(3)+(-1)(5) \\ 1(3)+0(5) \end{pmatrix} = \begin{pmatrix} -5 \\ 3
+                                \end{pmatrix}\)
+                            </div>
+                        </div>
+
+                        <div class="quiz-question mt-8">
+                            <p class="font-semibold">3. ¿Cuál es el determinante de la matriz \(C = \begin{pmatrix} 3 &
+                                2 \\ 1 & 4 \end{pmatrix}\)?</p>
+                            <p class="text-sm text-gray-600 mt-1">Para una matriz 2×2: det(C) = ad - bc</p>
+                            <div class="space-y-2 mt-2">
+                                <div><label><input type="radio" name="q3_3" value="a"> a) 10</label></div>
+                                <div><label><input type="radio" name="q3_3" value="b"> b) 14</label></div>
+                                <div><label><input type="radio" name="q3_3" value="c"> c) 8</label></div>
+                            </div>
+                            <button onclick="checkAnswer(this, 'a')"
+                                class="mt-3 px-4 py-1 bg-gray-200 rounded hover:bg-gray-300 text-sm font-medium">Verificar</button>
+                            <span class="feedback ml-3 text-sm font-semibold"></span>
+                            <div
+                                class="explanation hidden mt-3 p-3 bg-green-50 border border-green-200 rounded text-sm">
+                                <strong>Explicación:</strong> det(C) = 3(4) - 2(1) = 12 - 2 = 10
+                            </div>
+                        </div>
+
+                        <div class="quiz-question mt-8">
+                            <p class="font-semibold">4. Una transformación lineal en gráficos por computadora usa la
+                                matriz \(T = \begin{pmatrix} 2 & 0 \\ 0 & 3 \end{pmatrix}\). ¿Qué efecto tiene sobre un
+                                punto?</p>
+                            <div class="space-y-2 mt-2">
+                                <div><label><input type="radio" name="q3_4" value="a"> a) Escala x por 2 y y por
+                                        3</label></div>
+                                <div><label><input type="radio" name="q3_4" value="b"> b) Rota 90 grados</label></div>
+                                <div><label><input type="radio" name="q3_4" value="c"> c) Refleja sobre el eje x</label>
+                                </div>
+                            </div>
+                            <button onclick="checkAnswer(this, 'a')"
+                                class="mt-3 px-4 py-1 bg-gray-200 rounded hover:bg-gray-300 text-sm font-medium">Verificar</button>
+                            <span class="feedback ml-3 text-sm font-semibold"></span>
+                            <div
+                                class="explanation hidden mt-3 p-3 bg-green-50 border border-green-200 rounded text-sm">
+                                <strong>Explicación:</strong> Es una matriz de escalamiento diagonal que multiplica x
+                                por 2 e y por 3.
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </section>
+
+            <section id="unidad4" class="pt-16">
+                <h2 class="text-3xl font-bold tracking-tight">Unidad 4: Funciones</h2>
+                <p class="mt-2 text-lg text-gray-600">Exploración de los diferentes tipos de funciones y sus
+                    aplicaciones.</p>
+
+                <!-- Enlace al simulador de funciones -->
+                <div class="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+                    <p class="text-base text-green-800 mb-3">¿Quieres visualizar funciones de forma interactiva?</p>
+                    <a href="/simuladores/simulador-funciones.html" target="_blank"
+                        class="inline-flex items-center px-4 py-2 bg-green-600 text-white font-medium rounded-md hover:bg-green-700 transition-colors duration-200">
+                        📈 Ir al Simulador de Funciones
+                        <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                    </a>
+                </div>
+
+                <hr class="my-8 border-gray-200">
+
+                <article id="u4-sub1">
+                    <h3 class="text-2xl font-bold tracking-tight mb-4">Clasificación de Funciones</h3>
+                    <p class="text-base leading-relaxed text-gray-700">Una función es una regla que asigna a cada
+                        elemento de un conjunto de entrada (dominio) un único elemento de un conjunto de salida (rango).
+                        Se clasifican según su estructura algebraica.</p>
+                    <div class="grid md:grid-cols-2 gap-8 mt-4">
+                        <div>
+                            <h4 class="font-semibold text-lg">Algebraicas</h4>
+                            <ul class="list-disc list-inside ml-4 space-y-2 mt-2">
+                                <li><strong>Polinómicas:</strong> \(f(x) = a_n x^n + ... + a_0\).</li>
+                                <li><strong>Racionales:</strong> \(f(x) = P(x) / Q(x)\).</li>
+                                <li><strong>Irracionales:</strong> Contienen la variable bajo un radical.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-lg">Trascendentes</h4>
+                            <ul class="list-disc list-inside ml-4 space-y-2 mt-2">
+                                <li><strong>Exponenciales:</strong> \(f(x) = a^x\).</li>
+                                <li><strong>Logarítmicas:</strong> \(f(x) = \log_a(x)\).</li>
+                                <li><strong>Trigonométricas:</strong> \(f(x) = \sin(x)\), etc.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <article id="u4-sub2" class="mt-12">
+                    <h3 class="text-2xl font-bold tracking-tight mb-4">Interpolación y Extrapolación</h3>
+                    <p class="text-base leading-relaxed text-gray-700">Son métodos para estimar valores desconocidos a
+                        partir de datos conocidos. La <strong>interpolación</strong> estima valores *dentro* del rango
+                        de datos, mientras que la <strong>extrapolación</strong> estima valores *fuera* del rango, lo
+                        cual es generalmente menos preciso pero útil para proyecciones.</p>
+                </article>
+
+                <article class="mt-16">
+                    <h3 class="text-2xl font-bold tracking-tight mb-4">Videos Recomendados</h3>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-semibold mb-2">¿Qué es una Función?</h4>
+                            <div class="video-container">
+                                <iframe src="https://www.youtube.com/embed/Ll7xfe3HoZE" title="YouTube video player"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-2">Tipos de Funciones</h4>
+                            <div class="video-container">
+                                <iframe src="https://www.youtube.com/embed/mNCR9UwTs1U?si=jsVyfsSsC58gNizw"
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="mt-16">
+                    <h3 class="text-2xl font-bold tracking-tight mb-4">Ejercicios de la Unidad 4</h3>
+                    <div class="callout">
+                        <div class="quiz-question">
+                            <p class="font-semibold">1. El costo de un servicio en la nube es de $10 fijos al mes más
+                                $0.02 por cada GB almacenado. ¿Qué función \(C(g)\) representa el costo mensual para
+                                almacenar \(g\) gigabytes?</p>
+                            <p class="text-sm text-gray-600 mt-1">Función lineal: costo fijo + costo variable</p>
+                            <div class="space-y-2 mt-2">
+                                <div><label><input type="radio" name="q4_1" value="a"> a) \(C(g) = 10g + 0.02\)</label>
+                                </div>
+                                <div><label><input type="radio" name="q4_1" value="b"> b) \(C(g) = 0.02g + 10\)</label>
+                                </div>
+                                <div><label><input type="radio" name="q4_1" value="c"> c) \(C(g) = 10.02g\)</label>
+                                </div>
+                            </div>
+                            <button onclick="checkAnswer(this, 'b')"
+                                class="mt-3 px-4 py-1 bg-gray-200 rounded hover:bg-gray-300 text-sm font-medium">Verificar</button>
+                            <span class="feedback ml-3 text-sm font-semibold"></span>
+                            <div
+                                class="explanation hidden mt-3 p-3 bg-green-50 border border-green-200 rounded text-sm">
+                                <strong>Explicación:</strong> Costo = costo fijo + (costo por GB × GB) = 10 + 0.02g
+                            </div>
+                        </div>
+
+                        <div class="quiz-question mt-8">
+                            <p class="font-semibold">2. ¿Cuál de las siguientes es una función exponencial?</p>
+                            <div class="space-y-2 mt-2">
+                                <div><label><input type="radio" name="q4_2" value="a"> a) \(f(x) = 2x^3 + 1\)</label>
+                                </div>
+                                <div><label><input type="radio" name="q4_2" value="b"> b) \(f(x) = 3^x\)</label></div>
+                                <div><label><input type="radio" name="q4_2" value="c"> c) \(f(x) = \log_2(x)\)</label>
+                                </div>
+                            </div>
+                            <button onclick="checkAnswer(this, 'b')"
+                                class="mt-3 px-4 py-1 bg-gray-200 rounded hover:bg-gray-300 text-sm font-medium">Verificar</button>
+                            <span class="feedback ml-3 text-sm font-semibold"></span>
+                            <div
+                                class="explanation hidden mt-3 p-3 bg-green-50 border border-green-200 rounded text-sm">
+                                <strong>Explicación:</strong> En una función exponencial, la variable está en el
+                                exponente: \(f(x) = a^x\)
+                            </div>
+                        </div>
+
+                        <div class="quiz-question mt-8">
+                            <p class="font-semibold">3. Una población de bacterias crece según \(P(t) = 100 \cdot 2^t\),
+                                donde t es el tiempo en horas. ¿Cuál será la población después de 3 horas?</p>
+                            <div class="space-y-2 mt-2">
+                                <div><label><input type="radio" name="q4_3" value="a"> a) 600 bacterias</label></div>
+                                <div><label><input type="radio" name="q4_3" value="b"> b) 800 bacterias</label></div>
+                                <div><label><input type="radio" name="q4_3" value="c"> c) 300 bacterias</label></div>
+                            </div>
+                            <button onclick="checkAnswer(this, 'b')"
+                                class="mt-3 px-4 py-1 bg-gray-200 rounded hover:bg-gray-300 text-sm font-medium">Verificar</button>
+                            <span class="feedback ml-3 text-sm font-semibold"></span>
+                            <div
+                                class="explanation hidden mt-3 p-3 bg-green-50 border border-green-200 rounded text-sm">
+                                <strong>Explicación:</strong> \(P(3) = 100 \cdot 2^3 = 100 \cdot 8 = 800\) bacterias
+                            </div>
+                        </div>
+
+                        <div class="quiz-question mt-8">
+                            <p class="font-semibold">4. Dados los puntos (1, 3) y (4, 9), usa interpolación lineal para
+                                estimar el valor de y cuando x = 2.5</p>
+                            <p class="text-sm text-gray-600 mt-1">Fórmula: \(y = y_1 +
+                                \frac{(x-x_1)(y_2-y_1)}{x_2-x_1}\)</p>
+                            <div class="space-y-2 mt-2">
+                                <div><label><input type="radio" name="q4_4" value="a"> a) y = 6</label></div>
+                                <div><label><input type="radio" name="q4_4" value="b"> b) y = 5.5</label></div>
+                                <div><label><input type="radio" name="q4_4" value="c"> c) y = 6.5</label></div>
+                            </div>
+                            <button onclick="checkAnswer(this, 'a')"
+                                class="mt-3 px-4 py-1 bg-gray-200 rounded hover:bg-gray-300 text-sm font-medium">Verificar</button>
+                            <span class="feedback ml-3 text-sm font-semibold"></span>
+                            <div
+                                class="explanation hidden mt-3 p-3 bg-green-50 border border-green-200 rounded text-sm">
+                                <strong>Explicación:</strong> \(y = 3 + \frac{(2.5-1)(9-3)}{4-1} = 3 + \frac{1.5 \times
+                                6}{3} = 3 + 3 = 6\)
+                            </div>
+                        </div>
+
+                        <div class="quiz-question mt-8">
+                            <p class="font-semibold">5. ¿Cuál es el dominio de la función \(f(x) = \frac{1}{x-2}\)?</p>
+                            <div class="space-y-2 mt-2">
+                                <div><label><input type="radio" name="q4_5" value="a"> a) Todos los reales excepto x =
+                                        2</label></div>
+                                <div><label><input type="radio" name="q4_5" value="b"> b) Todos los reales excepto x =
+                                        0</label></div>
+                                <div><label><input type="radio" name="q4_5" value="c"> c) Todos los reales</label></div>
+                            </div>
+                            <button onclick="checkAnswer(this, 'a')"
+                                class="mt-3 px-4 py-1 bg-gray-200 rounded hover:bg-gray-300 text-sm font-medium">Verificar</button>
+                            <span class="feedback ml-3 text-sm font-semibold"></span>
+                            <div
+                                class="explanation hidden mt-3 p-3 bg-green-50 border border-green-200 rounded text-sm">
+                                <strong>Explicación:</strong> La función no está definida cuando el denominador es cero:
+                                x - 2 = 0, es decir, x = 2.
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        function checkAnswer(button, correctAnswer) {
+            const questionDiv = button.parentElement;
+            const selectedOption = questionDiv.querySelector('input[type="radio"]:checked');
+            const feedbackSpan = questionDiv.querySelector('.feedback');
+            const explanationDiv = questionDiv.querySelector('.explanation');
+
+            if (!selectedOption) {
+                feedbackSpan.textContent = 'Por favor, elige una respuesta.';
+                feedbackSpan.style.color = '#ef4444'; // red-500
+                return;
+            }
+
+            if (selectedOption.value === correctAnswer) {
+                feedbackSpan.textContent = '¡Correcto! 🎉';
+                feedbackSpan.style.color = '#22c55e'; // green-500
+                if (explanationDiv) {
+                    explanationDiv.classList.remove('hidden');
+                }
+            } else {
+                feedbackSpan.textContent = 'Incorrecto. Revisa la explicación. ❌';
+                feedbackSpan.style.color = '#ef4444'; // red-500
+                if (explanationDiv) {
+                    explanationDiv.classList.remove('hidden');
+                    explanationDiv.classList.add('bg-red-50', 'border-red-200');
+                    explanationDiv.classList.remove('bg-green-50', 'border-green-200');
+                }
+            }
+
+            // Disable button after checking
+            button.disabled = true;
+            button.style.cursor = 'not-allowed';
+            button.style.backgroundColor = '#e5e7eb'; // gray-200
+            button.textContent = 'Respondido';
+
+            // Disable all radio buttons in this question
+            const radioButtons = questionDiv.querySelectorAll('input[type="radio"]');
+            radioButtons.forEach(radio => {
+                radio.disabled = true;
+            });
+        }
+    </script>
+</body>
+
+</html>
